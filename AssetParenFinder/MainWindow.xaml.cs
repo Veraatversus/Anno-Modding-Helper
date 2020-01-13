@@ -121,13 +121,13 @@ namespace AssetParenFinder {
                 LastSearch = id;
                 Results.Clear();
                 await Task.Run(() => {
-                    var links = Original.Root.XPathSelectElements($"//*[text()={id}]").ToArray();
+                    var links = Original.Root.Descendants().Where(l=> l.Value?.ToLower().Contains(id.ToLower()) == true).ToArray();
                     if (links.Length > 0) {
                         for (var i = 0; i < links.Length; i++) {
                             var element = links[i];
                             var result = new SearchResult();
                             result.FoundedNodes.Add(element);
-                            while (element.Name.LocalName != "Asset" || !element.HasElements) {
+                            while (element != null && (element.Name.LocalName != "Asset" || !element.HasElements)) {
                                 element = element.Parent;
                             }
                             if (element != null) {

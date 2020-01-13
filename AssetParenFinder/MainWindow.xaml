@@ -143,7 +143,7 @@
             <Grid Grid.Column="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" MaxHeight="300" />
-                    <RowDefinition Height="355" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <ListBox Grid.Row="0" ItemsSource="{Binding /FoundedNodes, Source={StaticResource cvsResults}}" />
                 <WebBrowser x:Name="Browser" Grid.Row="1" />
